@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.geocat.experiment-hnap</groupId>
+ 
+ 	<artifactId>geonetwork-hnap</artifactId>
+    <packaging>war</packaging>
+    <version>3.11.0-SNAPSHOT</version>
+
+ 	<name>geonetwork-hnap</name>
+
+<repositories>
+
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>osgeo</id>
+      <name>OSGeo releases repository</name>
+      <url>https://repo.osgeo.org/repository/release/</url>
+    </repository>
+
+     <repository>
+	   <id>osgeo-snapshots</id>
+	   <name>OSGeo Nexus Snapshot Repository</name>
+	   <url>https://repo.osgeo.org/repository/snapshot/</url>
+	   <snapshots>
+	    <enabled>true</enabled>
+	   </snapshots>
+	   <releases>
+	    <enabled>false</enabled>
+	   </releases>
+	  </repository>
+
+</repositories>
+ 
+<dependencies>
+
+
+     <dependency>
+	      <groupId>org.geonetwork-opensource.schemas</groupId>
+	      <artifactId>schema-iso19139.ca.HNAP</artifactId>
+	      <version>${project.version}</version>
+	      <type>jar</type>
+    </dependency>
+
+     <dependency>
+	      <groupId>org.geonetwork-opensource</groupId>
+	      <artifactId>web-app</artifactId>
+	      <version>${project.version}</version>
+	      <type>war</type>
+	      <scope>runtime</scope>
+    </dependency>
+
+</dependencies>
+
+<build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <overlays>
+            <overlay>
+              <groupId>org.geonetwork-opensource</groupId>
+              <artifactId>web-app</artifactId>
+              <!-- <excludes>
+                <exclude>WEB-INF/classes/images/sampleimage-dependency.jpg</exclude>
+              </excludes -->>
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+
+ 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>iso19139.hnap.resources</id>
+            <phase>process-resources</phase>
+            <goals><goal>unpack</goal></goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.geonetwork-opensource.schemas</groupId>
+                  <artifactId>schema-iso19139.ca.HNAP</artifactId>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</outputDirectory>
+                  <includes>plugin/**</includes>
+                  <fileMappers>
+                    <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                      <pattern>^plugin/</pattern><replacement>./</replacement>
+                    </fileMapper>
+                  </fileMappers>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.27.v20200227</version>
+       
+      </plugin>
+
+
+    </plugins>
+ 
+  </build>
+
+
+</project>
+
+
+
+
+
+
