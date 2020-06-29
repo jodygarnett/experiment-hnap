@@ -44,6 +44,7 @@
 	      <artifactId>schema-iso19139.ca.HNAP</artifactId>
 	      <version>${project.version}</version>
 	      <type>jar</type>
+	      <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
     </dependency>
 
      <dependency>
@@ -52,6 +53,7 @@
 	      <version>${project.version}</version>
 	      <type>war</type>
 	      <scope>runtime</scope>
+	      <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
     </dependency>
 
 </dependencies>
@@ -113,7 +115,19 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.4.27.v20200227</version>
-       
+
+        <configuration>
+	          <stopPort>${jetty.stopPort}</stopPort>
+                <stopKey>GEOSERVER_JETTY_STOPKEY</stopKey>
+          <daemon>false</daemon>
+          <!-- uncomment following to set a GEOSERVER_DATA_DIR -->
+          <!--
+	                   <systemProperties> <systemProperty> <name>GEOSERVER_DATA_DIR</name>
+            <value>/home/ak/geoserver_data</value> </systemProperty> </systemProperties>
+          -->
+          <!-- Make sure it's not looking for annotations everywhere -->
+          <contextXml>jetty-context.xml</contextXml>
+        </configuration>	  
       </plugin>
 
 
