@@ -39,9 +39,22 @@ References:
 
 ## Jetty
 
-We are having some trouble working with jetty locally due to:
+1. Test war:
+   
+   ```
+   mvn jetty:run-war`
+   ```
 
-* Conflicts with transitive dependencies, example `pdfbox` from `mapfish`.
+2. Test classpath -- not working yet:
+   
+   ```
+   mvn jetty:run
+   ```
+   
+   We are having some trouble working with jetty locally due to:
 
-* Inclusion of `jetty` artifacts in geonetwork `core`.
-  
+   * Conflicts with transitive dependencies, example `pdfbox` from `mapfish`.
+
+   * Inclusion of `jetty` artifacts in geonetwork `core`.
+   
+   * Some confusion between jars on classpath and in libs
