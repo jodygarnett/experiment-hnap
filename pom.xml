@@ -1,67 +1,65 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.geocat.experiment-hnap</groupId>
+  <groupId>net.geocat.experiment-hnap</groupId>
+
+  <artifactId>geonetwork-hnap</artifactId>
+  <packaging>war</packaging>
+  <version>3.11.0-SNAPSHOT</version>
+
+  <name>GeoNetwork HNAP Web Application</name>
+  <description>
+    An example web application using maven war overlay functionality to reuse
+    geonetwork war and hnap schema plugin.    
+  </description>
+
+  <repositories>
+      <repository>
+        <id>osgeo</id>
+        <name>OSGeo releases repository</name>
+        <url>https://repo.osgeo.org/repository/release/</url>
+        <snapshots><enabled>false</enabled></snapshots>
+      </repository>
+       <repository>
+         <id>osgeo-snapshots</id>
+         <name>OSGeo Nexus Snapshot Repository</name>
+         <url>https://repo.osgeo.org/repository/snapshot/</url>
+         <snapshots><enabled>true</enabled></snapshots>
+         <releases><enabled>false</enabled></releases>
+      </repository>
+  </repositories>
  
- 	<artifactId>geonetwork-hnap</artifactId>
-    <packaging>war</packaging>
-    <version>3.11.0-SNAPSHOT</version>
-
- 	<name>geonetwork-hnap</name>
-
-<repositories>
-
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>osgeo</id>
-      <name>OSGeo releases repository</name>
-      <url>https://repo.osgeo.org/repository/release/</url>
-    </repository>
-
-     <repository>
-	   <id>osgeo-snapshots</id>
-	   <name>OSGeo Nexus Snapshot Repository</name>
-	   <url>https://repo.osgeo.org/repository/snapshot/</url>
-	   <snapshots>
-	    <enabled>true</enabled>
-	   </snapshots>
-	   <releases>
-	    <enabled>false</enabled>
-	   </releases>
-	  </repository>
-
-</repositories>
- 
-<dependencies>
-
-
-     <dependency>
-	      <groupId>org.geonetwork-opensource.schemas</groupId>
-	      <artifactId>schema-iso19139.ca.HNAP</artifactId>
-	      <version>${project.version}</version>
-	      <type>jar</type>
-	      <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+  <dependencies>
+    <dependency>
+      <groupId>org.geonetwork-opensource.schemas</groupId>
+      <artifactId>schema-iso19139.ca.HNAP</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <exclusions>
+        <!-- conflict between v2.0.7 and v2.0.19-->
+        <exclusion>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-
-     <dependency>
-	      <groupId>org.geonetwork-opensource</groupId>
-	      <artifactId>web-app</artifactId>
-	      <version>${project.version}</version>
-	      <type>war</type>
-	      <scope>runtime</scope>
-	      <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+    <dependency>
+      <groupId>org.geonetwork-opensource</groupId>
+      <artifactId>web-app</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
     </dependency>
+  </dependencies>
 
-</dependencies>
-
-<build>
-
+  <build>
     <plugins>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -78,8 +76,8 @@
           </overlays>
         </configuration>
       </plugin>
-
- 
+      
+      <!-- unzip hnap plugin into schema-plugins directory                           -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -94,15 +92,9 @@
                 <artifactItem>
                   <groupId>org.geonetwork-opensource.schemas</groupId>
                   <artifactId>schema-iso19139.ca.HNAP</artifactId>
-                  <type>jar</type>
+                  <type>zip</type>
                   <overWrite>false</overWrite>
-                  <outputDirectory>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</outputDirectory>
-                  <includes>plugin/**</includes>
-                  <fileMappers>
-                    <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-                      <pattern>^plugin/</pattern><replacement>./</replacement>
-                    </fileMapper>
-                  </fileMappers>
+                  <outputDirectory>${schema-plugins.dir}</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -111,35 +103,21 @@
       </plugin>
 
       <plugin>
-
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.27.v20200227</version>
-
+        <version>${jetty.version}</version>
         <configuration>
-	          <stopPort>${jetty.stopPort}</stopPort>
-                <stopKey>GEOSERVER_JETTY_STOPKEY</stopKey>
-          <daemon>false</daemon>
-          <!-- uncomment following to set a GEOSERVER_DATA_DIR -->
-          <!--
-	                   <systemProperties> <systemProperty> <name>GEOSERVER_DATA_DIR</name>
-            <value>/home/ak/geoserver_data</value> </systemProperty> </systemProperties>
-          -->
-          <!-- Make sure it's not looking for annotations everywhere -->
-          <contextXml>jetty-context.xml</contextXml>
-        </configuration>	  
+          <contextXml>${basedir}/jetty-context.xml</contextXml>
+          <war>${project.basedir}/target/geonetwork-hnap-3.11.0-SNAPSHOT.war</war>
+        </configuration>
       </plugin>
-
-
     </plugins>
  
   </build>
 
-
+  <properties>
+    <jetty.version>9.4.27.v20200227</jetty.version>
+    <schema-plugins.dir>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</schema-plugins.dir>
+  </properties>
+  
 </project>
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 gn.*.db
 logs/
-src/
+src/main/webapp/WEB-INF/data/config/schema_plugins
 target/
 jcs_caching/
