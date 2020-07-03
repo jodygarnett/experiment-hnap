@@ -1,8 +1,8 @@
 [
    {
-      "type":"STRING",
+      "type":"BOOLEAN",
       "key":"schema/iso19139.ca.HNAP/UseGovernmentOfCanadaOrganisationName",
       "position":1,
-      "value":"..."
+      "value":"false"
    }
 ]
