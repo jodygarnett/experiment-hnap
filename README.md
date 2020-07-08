@@ -23,7 +23,7 @@ References:
 This does a three-way layering of the WAR.
 Please see the root `pom.xml`.
 
-Layer One
+### Layer One
 
 The first layer is contained in this repository and does the following;
 
@@ -41,11 +41,11 @@ c) sets up HNAP configuration settings
   * See settings json: `src/main/webapp/initialization/settings/settings.json`
 
 
-Layer Two
+### Layer Two
 
 Layer two is the standard HNAP build from https://github.com/metadata101/iso19139.ca.HNAP, and pulled from the OS Geo repository.
 
-Layer Three
+### Layer Three
 
 Layer three is the standard GeoNetwork Open Source WAR from https://github.com/geonetwork/core-geonetwork, and pulled from the OS Geo repository.
 
