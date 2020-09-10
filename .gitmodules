@@ -1,0 +1,3 @@
+[submodule "geonetwork"]
+	path = geonetwork
+	url = https://github.com/geonetwork/core-geonetwork.git
