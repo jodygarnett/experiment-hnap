@@ -1,0 +1,29 @@
+// {
+//    "schemaName":"iso19139.ca.HNAP",
+//    "schemaFileName":"schematron-rules-multilingual.xsl",
+//    "groupName":"*Generated*",
+
+//    "action":"DELETE",      // ADD or DELETE
+
+//    "type": "",
+//    "value": "",
+//    "uitype": "",
+//    "uivalue": ""
+// }
+[
+   {
+      "schemaName":"iso19139.ca.HNAP",
+      "schemaFileName":"schematron-rules-multilingual.xsl",
+      "groupName":"*Generated*",
+
+      "action":"DELETE",
+
+      "type": "ALWAYS_ACCEPT",
+      "value": "_ignored_",
+      "uitype": "abc",
+      "uivalue": "def"
+   }
+
+
+
+]

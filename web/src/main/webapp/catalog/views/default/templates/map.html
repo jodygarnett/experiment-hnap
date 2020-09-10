@@ -1,0 +1,61 @@
+<!-- <div class="gn-top gn-top-map"> -->
+  <!-- header with logo & NO search -->
+  <!-- <header class="gn-header"
+        data-ng-show="gnCfg.mods.header.enabled && gnCfg.mods.header.isLogoInHeader">
+    <div class=row>
+      <div class="col-md-12">
+        <a data-gn-active-tb-item="{{gnCfg.mods.home.appUrl}}">
+          <img class="{{gnCfg.mods.header.logoInHeaderPosition}}"
+              id="gn_logo"
+              alt="{{'siteLogo' | translate}}"
+              src="../../catalog/views/default/images/Canada-Logo-Horizontal-Full-Colour.png"/>
+        </a>
+      
+        <div class="navbar navbar-default gn-top-bar gn-map-bar"
+            role="navigation"
+            data-ng-show="gnCfg.mods.header.enabled"
+            data-ng-include="'../../catalog/views/default/templates/topToolbar.html'"
+            xmlns="http://www.w3.org/1999/html">
+        </div> -->
+        <!-- /.navbar navbar-default gn-top-bar gn-map-bar -->
+      <!-- </div>
+    </div>
+  </header> -->
+  <!-- /.gn-header -->
+<!-- </div> -->
+<!-- /.gn-top -->
+
+<div class="gn-top">
+  <header class="gn-header"
+        data-ng-show="gnCfg.mods.header.enabled && gnCfg.mods.header.isLogoInHeader">
+    <div data-ng-class="fluidHeaderLayout ? 'container-fluid' : 'container'">
+      <div class=row>
+        <div class="col-md-6 col-xs-12 gn-nopadding-left text-{{gnCfg.mods.header.logoInHeaderPosition}}">
+          <a data-gn-active-tb-item="{{gnCfg.mods.home.appUrl}}">
+            <img class="{{gnCfg.mods.header.logoInHeaderPosition}}"
+                id="gn_logo"
+                alt="{{'siteLogo' | translate}}"
+                src="../../catalog/views/default/images/Canada-Logo-Horizontal-Full-Colour.png"/>
+          </a>
+        </div>
+        <div class="col-md-6 col-xs-12 gn-nopadding-right">
+          <ul class="socialmedia pull-right" ng-show="getSocialLinksVisible()" data-ng-include="'../../catalog/views/default/templates/socialBar.html'"></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- /.gn-header -->
+</div>
+<!-- /.gn-top -->
+<div class="navbar navbar-default gn-top-bar"
+     role="navigation"
+     data-ng-show="gnCfg.mods.header.enabled"
+     data-ng-include="'../../catalog/views/default/templates/topToolbar.html'"
+     xmlns="http://www.w3.org/1999/html">
+</div>
+
+<div data-ng-class="fluidLayout ? 'container-fluid' : 'container'">
+  <div gn-main-viewer=""
+      data-map="searchObj.viewerMap">
+  </div>
+</div>

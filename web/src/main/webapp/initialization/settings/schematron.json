@@ -1,0 +1,66 @@
+// {
+//    "schemaName":"iso19139.ca.HNAP",
+//    "schemaFileName":"schematron-rules-multilingual.xsl",
+//    "groupName":"*Generated*",
+
+//    "action":"DELETE",      // ADD or DELETE
+
+//    "type": "",
+//    "value": "",
+//    "uitype": "",
+//    "uivalue": ""
+// }
+[
+   {
+      "schemaName":"iso19139.ca.HNAP",
+      "schemaFileName":"schematron-rules-multilingual.xsl",
+      "groupName":"*Generated*",
+
+      "action":"DELETE",
+
+      "type": "ALWAYS_ACCEPT",
+      "value": "_ignored_",
+      "uitype": "",
+      "uivalue": ""
+   },
+
+   {
+      "schemaName":"iso19139.ca.HNAP",
+      "schemaFileName":"schematron-rules-multilingual.xsl",
+      "groupName":"*Generated*",
+
+      "action":"ADD",
+
+      "type": "XPATH",
+      "value": "count(gmd:local)>1",
+      "uitype": "XPATH",
+      "uivalue": "count(gmd:local)>1"
+   },
+
+   {
+      "schemaName":"iso19139.ca.HNAP",
+      "schemaFileName":"schematron-rules-non-multilingual.xsl",
+      "groupName":"*Generated*",
+
+      "action":"DELETE",
+
+      "type": "ALWAYS_ACCEPT",
+      "value": "_ignored_",
+      "uitype": "",
+      "uivalue": ""
+   },
+
+   {
+      "schemaName":"iso19139.ca.HNAP",
+      "schemaFileName":"schematron-rules-non-multilingual.xsl",
+      "groupName":"*Generated*",
+
+      "action":"ADD",
+
+      "type": "XPATH",
+      "value": "count(gmd:local)<=1",
+      "uitype": "XPATH",
+      "uivalue": "count(gmd:local)<=1"
+   }
+
+]

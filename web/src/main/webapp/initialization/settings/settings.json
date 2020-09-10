@@ -1,0 +1,28 @@
+//[
+//  {
+//    "type":"STRING",   // STRING, INT, or BOOLEAN
+//    "key":"/system/abc",
+//    "position":123,
+//    "value":"..."
+//  }
+//]
+[
+   {
+      "type":"BOOLEAN",
+      "key":"schema/iso19139.ca.HNAP/UseGovernmentOfCanadaOrganisationName",
+      "position":1,
+      "value":"true"
+   },
+   {
+      "type":"STRING",
+      "key":"schema/iso19139.ca.HNAP/DefaultMainOrganizationName_en",
+      "position":2,
+      "value":"City of DaveVille"
+   },
+   {
+      "type":"STRING",
+      "key":"schema/iso19139.ca.HNAP/DefaultMainOrganizationName_fr",
+      "position":3,
+      "value":"City of DaveVille"
+   }
+]

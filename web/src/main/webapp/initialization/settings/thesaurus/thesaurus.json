@@ -1,0 +1,20 @@
+//[
+//  {
+//      "initialization/settings/thesaurus/EC_Org_Names.rdf",  // location of resource - always use "/"
+//      "action":"overwrite",                                  // createOnly,overwrite,delete
+//      "destination": "external/theme/EC_Org_Names.rdf"       // relative to thesaurusDir, always use "/"
+//   }
+//]
+[
+ {
+      "source": "initialization/settings/thesaurus/GC_Org_Names.rdf",
+      "action": "overwrite",
+      "destination": "external/thesauri/theme/GC_Org_Names.rdf"
+ },
+{
+  "source": "initialization/settings/thesaurus/GC_Departments.rdf",
+  "action": "overwrite",
+  "destination": "external/thesauri/theme/GC_Departments.rdf"
+}
+
+]

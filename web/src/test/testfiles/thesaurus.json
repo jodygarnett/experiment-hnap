@@ -1,0 +1,8 @@
+[
+  {
+    "source": "initialization/settings/thesaurus/GC_Org_Names.rdf",
+    "action": "overwrite",
+    "destination": "external/thesauri/theme/GC_Org_Names.rdf"
+  }
+
+]

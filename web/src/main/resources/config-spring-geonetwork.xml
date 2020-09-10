@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+        xmlns:context="http://www.springframework.org/schema/context"
+>
+
+    <context:component-scan base-package="org.geonetwork.schemainit"/>
+
+     <bean id="ischeamainit.settings"
+          class="org.geonetwork.schemainit.SettingsInitialization">
+    </bean>
+
+    <bean id="ischeamainit.uisettings"
+          class="org.geonetwork.schemainit.UISettingsInitialization">
+    </bean>
+
+    <bean id="ischeamainit.groups"
+          class="org.geonetwork.schemainit.GroupInitialization">
+    </bean>
+
+    <bean id="ischeamainit.thesaurus"
+          class="org.geonetwork.schemainit.ThesaurusInitialization">
+    </bean>
+
+    <bean id="ischeamainit.schematron"
+          class="org.geonetwork.schemainit.SchematronInitialization">
+    </bean>
+
+</beans>

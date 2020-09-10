@@ -1,0 +1,211 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>hnap-experimentn</groupId>
+    <artifactId>geonetwork</artifactId>
+    <version>3.10.4-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>web</artifactId>
+  <packaging>war</packaging>
+
+  <name>GeoNetwork Web Application for ${customer}</name>
+  <description>
+    Web application using maven war overlay functionality to reuse
+    geonetwork war and hnap schema plugin for ${customer}.
+  </description>
+ 
+  <properties>
+    <schema-plugins.dir>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</schema-plugins.dir>
+    <build.webapp.resources>${project.build.directory}/webapp</build.webapp.resources>
+    <jetty.env>jetty-env.xml</jetty.env>
+  </properties>
+ 
+  <dependencies>
+    <!-- war includes prebuilt geonetwork jars -->
+    <dependency>
+      <groupId>org.geonetwork-opensource</groupId>
+      <artifactId>web-app</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency>
+    
+    <!-- additional schema plugin for overlay -->
+    <dependency>
+      <groupId>org.geonetwork-opensource</groupId>
+      <artifactId>schema-iso19139.ca.HNAP</artifactId>
+      <version>3.7</version>
+      <type>jar</type>
+      <exclusions>
+        <exclusion>
+            <groupId>*</groupId>
+            <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <!-- used to compile, already included in war -->
+    <dependency>
+      <groupId>org.geonetwork-opensource</groupId>
+      <artifactId>events</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.geonetwork-opensource</groupId>
+          <artifactId>core</artifactId>
+          <version>${project.version}</version>
+          <scope>provided</scope>
+      </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>geonetwork</finalName>
+    <plugins>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <overlays>
+            <overlay>
+              <groupId>org.geonetwork-opensource</groupId>
+              <artifactId>web-app</artifactId>
+            </overlay>
+          </overlays>
+          <webResources>
+            <resource>
+              <directory>${project.build.directory}/webapp</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-schemas</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <includeEmptyDirs>true</includeEmptyDirs>
+              <overwrite>true</overwrite>
+              <outputDirectory>${build.webapp.resources}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/../iso19139.ca.HNAP/src/main/plugin</directory>
+                  <targetPath>WEB-INF/data/config/schema_plugins</targetPath>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <configuration>
+          <contextXml>${basedir}/jetty-context.xml</contextXml>
+          <webApp>
+            <contextPath>/geonetwork</contextPath>
+            <jettyEnvXml>${jetty.env}</jettyEnvXml>
+          </webApp>
+        </configuration>
+        <!--<dependencies>
+          <dependency>
+              <groupId>com.h2database</groupId>
+              <artifactId>h2</artifactId>
+              <version>1.3.174</version>
+          </dependency>
+        </dependencies>-->
+      </plugin>
+    </plugins>
+ 
+  </build>
+
+  <profiles>
+    <profile>
+      <id>jetty-log4j</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>${jetty.version}</version>
+            <configuration>
+              <systemProperties>
+                <systemProperty>
+                  <name>log4j.configuration</name>
+                  <value>file:${project.basedir}/src/test/resources/log4j.properties</value>
+                </systemProperty>
+              </systemProperties>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.16</version>
+              </dependency>
+              <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.6.1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.6.1</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+    <profile>
+      <id>oracle</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>${jetty.version}</version>
+            <configuration>
+              <webApp>
+                <jettyEnvXml>${basedir}/src/main/jetty/jetty-env.xml</jettyEnvXml>
+              </webApp>
+            </configuration>
+            <dependencies>
+              <dependency>
+               <artifactId>ojdbc8</artifactId>
+               <groupId>com.oracle.database.jdbc</groupId>
+               <version>19.7.0.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

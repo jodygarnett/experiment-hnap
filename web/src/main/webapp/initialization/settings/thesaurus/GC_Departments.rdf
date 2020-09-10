@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ns2="http://www.w3.org/2004/02/skos/core#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+    <skos:ConceptScheme>
+      <dc:title>City of DaveVille Departments</dc:title>
+       <dc:title xml:lang="en">City of DaveVille Departments</dc:title>
+       <dc:publisher xml:lang="en">Government of Canada; Library and Archives Canada</dc:publisher>
+
+      <dc:description></dc:description>
+    </skos:ConceptScheme>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#City_Manager">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">City Manager</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">City Manager</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#City_Housing_DaveVille">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">City Housing DaveVille</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">City Housing DaveVille</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#Corporate_Services">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">Corporate Services</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">Corporate Services</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#Healthy_and_Safe_Communities">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">Healthy and Safe Communities</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">Healthy and Safe Communities</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#Planning_and_Economic_Development">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">Planning and Economic Development</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">Planning and Economic Development</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://geonetwork-opensource.org/EC/GovernmentTitle#Public_Works">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <ns2:prefLabel xml:lang="en">Public Works</ns2:prefLabel>
+        <ns2:prefLabel xml:lang="fr">Public Works</ns2:prefLabel>
+        <ns2:scopeNote xml:lang="en">Definition</ns2:scopeNote>
+        <ns2:scopeNote xml:lang="fr">Definition</ns2:scopeNote>
+    </rdf:Description>
+
+
+</rdf:RDF>

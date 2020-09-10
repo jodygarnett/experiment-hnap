@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN"
+  "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+  <New id="gnparameters" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>gnDatabaseDialect</Arg>
+    <Arg>ORACLE</Arg>
+  </New>
+  <New id="gnresources" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>jdbc/geonetwork</Arg>
+    <Arg>
+      <New class="org.apache.commons.dbcp.BasicDataSource">
+        <Set name="driverClassName">oracle.jdbc.OracleDriver</Set>
+        <Set name="url">jdbc:oracle:thin:@DELTADEV:1521:GISEDITD</Set>
+        <Set name="username"><SystemProperty name="dbUser" /></Set>
+        <Set name="password"><SystemProperty name="dbPassword" /></Set>
+        <Set name="validationQuery">SELECT 1 FROM dual</Set>
+        <Set name="maxActive">10</Set>
+        <Set name="maxIdle">10</Set>
+        <Set name="removeAbandoned">true</Set>
+        <Set name="removeAbandonedTimeout">3600</Set>
+        <Set name="logAbandoned">true</Set>
+        <Set name="testOnBorrow">true</Set>
+        <Set name="defaultAutoCommit">false</Set>
+        <!--Set name="defaultTransactionIsolation">2</Set-->
+        <Set name="accessToUnderlyingConnectionAllowed">true</Set>
+      </New>
+    </Arg>
+    <Call name="bindToENC">
+      <Arg>jdbc/geonetwork</Arg>
+    </Call>
+  </New>
+</Configure>

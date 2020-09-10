@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+  <Environment name="gnDatabaseDialect" value="ORACLE" type="java.lang.String" override="false"/>
+  <Resource name="jdbc/geonetwork" auth="Container"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@DBSERVER:1521:DBTABLE"
+            username="DBUSER" password="DBPASSWORD"
+            maxActive="20" maxIdle="10"
+            validationQuery="select 1 from dual"
+            defaultAutoCommit="false" maxWait="-1"/>
+  <Environment name="geonetwork.dir" value="C:\\ProgramData\\GeoNetwork\\Data" type="java.lang.String" override="false"/>
+  <Environment name="ldap_password" value="LDAP_PASSWORD" type="java.lang.String" override="false"/>
+</Context>

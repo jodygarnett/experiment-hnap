@@ -1,3 +1,8 @@
 [submodule "geonetwork"]
 	path = geonetwork
 	url = https://github.com/geonetwork/core-geonetwork.git
+	branch = 3.10.x
+[submodule "iso19139.ca.HNAP"]
+	path = iso19139.ca.HNAP
+	url = https://github.com/metadata101/iso19139.ca.HNAP.git
+	branch = 3.10.x
