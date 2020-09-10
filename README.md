@@ -7,17 +7,22 @@ This defines web application using war overlay approach:
 * web: war overlay application
 * release: release assembly including installation instructions
 
+For development details on this approach see [configuration.pdf](configuration.pdf).
+
 ## Repository Overview
 
 * `web/` - web application
 * `geonetwork/` - geonetwork submodule
 * `iso19139.ca.HNAP` - hnap schema submodule
+* `release` - release bundle
 
 Use of submodules:
 
 ```
 git submodule update --init --recursive
 ```
+
+In the future when geonetwork and schema-plugins provide stable version numbers the use of submodules above will not be needed.
 
 ## Build
 
